@@ -1,0 +1,50 @@
+Vodka, Gin, Vermouth - Martini
+White Rum, Lime Juice, Soda Water, Mint, Sugar - Mojito
+Tequila, Lime Juice, Triple Sec - Margarita
+Bourbon, Lemon Juice, Sugar - Whiskey Sour
+White Rum, Lime Juice, Simple Syrup - Daiquiri
+White Rum, Pineapple Juice, Coconut Cream - Piña Colada
+Vodka, Tomato Juice, Tabasco, Worcestershire Sauce - Bloody Mary
+Bourbon, Sweet Vermouth, Angostura Bitters - Manhattan
+Light Rum, Dark Rum, Lime Juice, Orgeat Syrup, Orange Liqueur - Mai Tai
+Bourbon, Mint Leaves, Simple Syrup - Mint Julep
+Vodka, Coffee Liqueur, Cream - White Russian
+Vodka, Cranberry Juice, Triple Sec, Lime Juice - Cosmopolitan
+Vodka, Tequila, Rum, Gin, Triple Sec, Lemon Juice, Simple Syrup, Cola - Long Island Iced Tea
+Gin, Campari, Sweet Vermouth - Negroni
+Bourbon, Angostura Bitters, Sugar, Water - Old Fashioned
+Vodka, Ginger Beer, Lime Juice - Moscow Mule
+Tequila, Orange Juice, Grenadine - Tequila Sunrise
+Vodka, Coffee Liqueur, Espresso - Espresso Martini
+Gin, Lime Juice, Simple Syrup - Gimlet
+Gin, Lemon Juice, Simple Syrup, Club Soda - Tom Collins
+Tequila, Grapefruit Soda, Lime Juice - Paloma
+Vodka, Peach Schnapps, Orange Juice, Cranberry Juice - Sex on the Beach
+White Rum, Lime Juice, Simple Syrup - Mai Tai
+Vodka, Orange Juice - Screwdriver
+Gin, Lemon Juice, Simple Syrup, Champagne - French 75
+Prosecco, Peach Puree - Bellini
+Dark Rum, Ginger Beer, Lime Juice - Dark 'n' Stormy
+Rye Whiskey, Absinthe, Peychaud's Bitters - Sazerac
+Cognac, Orange Liqueur, Lemon Juice - Sidecar
+Irish Whiskey, Coffee, Cream, Sugar - Irish Coffee
+Gin, Lemon Juice, Simple Syrup, Blackberry Liqueur - Bramble
+Vodka, Coffee Liqueur - Black Russian
+Gin, Lemon Juice, Simple Syrup, Soda Water - Gin Fizz
+Bourbon, Campari, Sweet Vermouth - Boulevardier
+Scotch Whisky, Sweet Vermouth, Angostura Bitters - Rob Roy
+Applejack, Lemon Juice, Grenadine - Jack Rose
+Dark Rum, Pineapple Juice, Orange Juice, Grenadine, Lime Juice - Planters Punch
+Rye Whiskey, Cognac, Sweet Vermouth, Benedictine, Angostura Bitters, Peychaud's Bitters - Vieux Carré
+Gin, Maraschino Liqueur, Lemon Juice - Aviation
+Gin, Lemon Juice, Lillet Blanc, Orange Liqueur, Absinthe - Corpse Reviver No. 2
+Dark Rum, Pineapple Juice, Orange Juice, Grenadine, Lime Juice - Planter's Punch
+Gin, Cherry Liqueur, Orange Liqueur, Pineapple Juice, Lime Juice, Grenadine - Singapore Sling
+Vodka, Ginger Beer, Lime Juice - Moscow Mule
+Bourbon, Sweet Vermouth, Angostura Bitters - Manhattan
+Tequila, Lime Juice, Triple Sec - Margarita
+Light Rum, Dark Rum, Lime Juice, Orgeat Syrup, Orange Liqueur - Mai Tai
+Vodka, Gin, Vermouth - Martini
+White Rum, Lime Juice, Soda Water, Mint, Sugar - Mojito
+Vodka, Ginger Beer, Lime Juice - Moscow Mule
+Bourbon, Mint Leaves, Simple Syrup - Mint Julep
