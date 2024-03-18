@@ -1,11 +1,10 @@
 .navbar{
-    background-color: rgb(50, 50, 50);
+    background-color: none;
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
-    margin: 0% 0%;
-    border-radius: 0.0cm;
-    border: 0px solid black ;
+    margin: 0%, 0%, 0%, 0%;
+    border-bottom: 5px solid white ;
     margin-top: 0px;
 }
 .sajatoldal{
@@ -22,9 +21,9 @@
     max-height: 100px;
 }
 .szoveg{
-    background-color: white;
-    padding: 9px 0px;
-    margin-top: 15px ;
+    color: white;
+    text-align:  center;
+    font-size: 20px;
 }
 .cim{
     text-align: center;
@@ -33,7 +32,47 @@
     text-decoration: underline;
     font-size: 60px;
     font-weight: bold;
+    color: white;
 }
 .text{
     text-align:center;
+    color: white;
+    font-weight: bold;
+}
+.hatter{
+    background-image: url(https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+.kellőclass{
+ margin-right: 0%;
+}
+.szlogen_kiemelős{
+    margin: 0% 20% ;
+    background-color: rgba(10, 10, 10, 0.5);
+    padding-bottom: 0px;
+    border-radius: 0.3cm;
+}
+.alcim{
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    text-decoration: underline;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+.szöveg_kiemelősös{
+    margin: 4% 20% ;
+    background-color: rgba(10, 10, 10, 0.5);
+    padding-bottom: 0px;
+    border-radius: 0.3cm;
+    padding-top: 0px
+}
+#felso{
+    padding-bottom: 20px;
+}
+#also{
+    padding-bottom: 10px
 }
