@@ -57,7 +57,8 @@ def main():
     print('1 >> Koktél menü')
     print('2 >> Alapanyag menü')
     print('3 >> Eladás/Beszerzés menü')
-    print('4 >> Kilépés')
+    print('4 >> Keverés menü')
+    print('5 >> Kilépés')
 
     v = input('A választás száma: ')
     match v:
@@ -68,6 +69,8 @@ def main():
         case '3':
             return 'eladasBeszerzesMenu'
         case '4':
+            return 'keveresMenu'
+        case '5':
             return 'kilep'
 
 
@@ -204,6 +207,78 @@ def alapanyagMenu():
 def eladasBeszerzesMenu():
     pass
 
+def koktelKeverese(koktel: int):
+    match koktel:
+        case 1:
+            pass
+        case 2:
+            pass
+        
+def keveresMenu():
+    os.system('cls')
+    print('███╗   ███╗ ██████╗      ██╗██╗████████╗ ██████╗     ███╗   ███╗ █████╗ ██████╗ ███╗   ██╗███████╗███████╗███████╗')
+    print('████╗ ████║██╔═══██╗     ██║██║╚══██╔══╝██╔═══██╗    ████╗ ████║██╔══██╗██╔══██╗████╗  ██║██╔════╝██╔════╝██╔════╝')
+    print('██╔████╔██║██║   ██║     ██║██║   ██║   ██║   ██║    ██╔████╔██║███████║██║  ██║██╔██╗ ██║█████╗  ███████╗███████╗')
+    print('██║╚██╔╝██║██║   ██║██   ██║██║   ██║   ██║   ██║    ██║╚██╔╝██║██╔══██║██║  ██║██║╚██╗██║██╔══╝  ╚════██║╚════██║')
+    print('██║ ╚═╝ ██║╚██████╔╝╚█████╔╝██║   ██║   ╚██████╔╝    ██║ ╚═╝ ██║██║  ██║██████╔╝██║ ╚████║███████╗███████║███████║')
+    print('╚═╝     ╚═╝ ╚═════╝  ╚════╝ ╚═╝   ╚═╝    ╚═════╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═══╝╚══════╝╚══════╝╚══════╝')
+    print()
+    print('Keverés menü')
+    print('1 >> Készlethiányos koktélok: ')
+    print('2 >> Koktél keverése: ')
+    print('3 >> Hiányzó alapanyagok: ')
+    print('4 >> Kilépés')
+
+    v = input('A választás száma: ')
+    match v:
+        case '1':
+            os.system('cls')
+            van = False
+            console = Console()
+
+            table = Table(title="Készlethiányos koktélok")
+            table.add_column("Név", style="cyan", justify="center")
+            table.add_column("Elérhető mennyiség", style="yellow", justify="right")
+
+            for koktel in koktelok:
+                if koktel.db < 1:
+                    van = True
+                    table.add_row(
+                        koktel.nev,
+                        str(koktel.db),
+                    )
+            if van == True:
+                console.print(table)
+            else:
+                print('Nincsenek készlethiányos koktelok')
+            input('Enter a key to continue')
+            return 'keveresMenu'
+        case '2':
+            os.system('cls')
+            v = ''
+            while v == '':
+                v = input('Melyik koktélt szertnéd keverni? (Ha nem tudod a számot írd be, hogy "segitseg"): ')
+            match v:
+                case 'segitseg':
+                    os.system('cls')
+                    console = Console()
+
+                    table = Table(title="Koktélok")
+                    table.add_column("Név", style="cyan", justify="center")
+                    table.add_column("Elérhető mennyiség", style="yellow", justify="right")
+
+                    for koktel in koktelok:
+                        table.add_row(
+                            koktel.nev,
+                            str(koktel.db),
+                        )
+
+                    console.print(table)
+                    v2 = input('Melyik koktélt szertnéd keverni?: ')
+                    koktelKeverese(int(v2))
+                case _:
+                    koktelKeverese(int(v))
+
 
 pult = main()
 while pult != 'kilep':
@@ -216,3 +291,5 @@ while pult != 'kilep':
             pult = alapanyagMenu()
         case 'eladasBeszerzesMenu':
             pult = eladasBeszerzesMenu()
+        case 'keveresMenu':
+            pult = keveresMenu()
