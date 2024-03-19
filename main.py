@@ -3,6 +3,11 @@ import random
 import os
 import sys
 import time
+from time import sleep
+from rich.progress import track
+from rich.markdown import Markdown
+from rich.console import Console
+from rich.table import Table
 
 os.system('cls')
 def slowPrint(string, speed=0.001):
@@ -20,29 +25,6 @@ input("\n\nHa készen álasz nyomd meg az entert!")
 os.system('cls')
 '''
 
-koktelok: list[Koktel] = []
-alapanyagok: list[Alapanyag] = []
-
-def main():
-    beolvasas()
-    print('███╗   ███╗ ██████╗      ██╗██╗████████╗ ██████╗     ███╗   ███╗ █████╗ ██████╗ ███╗   ██╗███████╗███████╗███████╗')
-    print('████╗ ████║██╔═══██╗     ██║██║╚══██╔══╝██╔═══██╗    ████╗ ████║██╔══██╗██╔══██╗████╗  ██║██╔════╝██╔════╝██╔════╝')
-    print('██╔████╔██║██║   ██║     ██║██║   ██║   ██║   ██║    ██╔████╔██║███████║██║  ██║██╔██╗ ██║█████╗  ███████╗███████╗')
-    print('██║╚██╔╝██║██║   ██║██   ██║██║   ██║   ██║   ██║    ██║╚██╔╝██║██╔══██║██║  ██║██║╚██╗██║██╔══╝  ╚════██║╚════██║')
-    print('██║ ╚═╝ ██║╚██████╔╝╚█████╔╝██║   ██║   ╚██████╔╝    ██║ ╚═╝ ██║██║  ██║██████╔╝██║ ╚████║███████╗███████║███████║')
-    print('╚═╝     ╚═╝ ╚═════╝  ╚════╝ ╚═╝   ╚═╝    ╚═════╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═══╝╚══════╝╚══════╝╚══════╝')
-    print()                                                                                                                                                                                                                                   
-    print('1 >> Koktél menü')
-    print('2 >> Alapanyag menü')
-    print('3 >> Kilépés')
-
-    v = input('A választás száma: ')
-    match v:
-        case '1':
-            return 'koktelMenu'
-        case '2':
-            return 'alapanyagMenu'
-
 def beolvasas():
     f = open('koktelok.csv', 'r', encoding='utf-8')
     f.readline()
@@ -55,6 +37,41 @@ def beolvasas():
         alapanyagok.append(Alapanyag(sor))
     f.close()
 
+koktelok: list[Koktel] = []
+alapanyagok: list[Alapanyag] = []
+beolvasas()
+for szam in track(range(10)):
+    sleep(0.25)
+input('Enter a key to continue')
+
+
+def main():
+    os.system('cls')
+    print('███╗   ███╗ ██████╗      ██╗██╗████████╗ ██████╗     ███╗   ███╗ █████╗ ██████╗ ███╗   ██╗███████╗███████╗███████╗')
+    print('████╗ ████║██╔═══██╗     ██║██║╚══██╔══╝██╔═══██╗    ████╗ ████║██╔══██╗██╔══██╗████╗  ██║██╔════╝██╔════╝██╔════╝')
+    print('██╔████╔██║██║   ██║     ██║██║   ██║   ██║   ██║    ██╔████╔██║███████║██║  ██║██╔██╗ ██║█████╗  ███████╗███████╗')
+    print('██║╚██╔╝██║██║   ██║██   ██║██║   ██║   ██║   ██║    ██║╚██╔╝██║██╔══██║██║  ██║██║╚██╗██║██╔══╝  ╚════██║╚════██║')
+    print('██║ ╚═╝ ██║╚██████╔╝╚█████╔╝██║   ██║   ╚██████╔╝    ██║ ╚═╝ ██║██║  ██║██████╔╝██║ ╚████║███████╗███████║███████║')
+    print('╚═╝     ╚═╝ ╚═════╝  ╚════╝ ╚═╝   ╚═╝    ╚═════╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═══╝╚══════╝╚══════╝╚══════╝')
+    print()                                                                                                                                                                                                                                   
+    print('1 >> Koktél menü')
+    print('2 >> Alapanyag menü')
+    print('3 >> Eladás/Beszerzés menü')
+    print('4 >> Kilépés')
+
+    v = input('A választás száma: ')
+    match v:
+        case '1':
+            return 'koktelMenu'
+        case '2':
+            return 'alapanyagMenu'
+        case '3':
+            return 'eladasBeszerzesMenu'
+        case '4':
+            return 'kilep'
+
+
+
 def koktelMenu():
     os.system('cls')
     print('███╗   ███╗ ██████╗      ██╗██╗████████╗ ██████╗     ███╗   ███╗ █████╗ ██████╗ ███╗   ██╗███████╗███████╗███████╗')
@@ -64,7 +81,18 @@ def koktelMenu():
     print('██║ ╚═╝ ██║╚██████╔╝╚█████╔╝██║   ██║   ╚██████╔╝    ██║ ╚═╝ ██║██║  ██║██████╔╝██║ ╚████║███████╗███████║███████║')
     print('╚═╝     ╚═╝ ╚═════╝  ╚════╝ ╚═╝   ╚═╝    ╚═════╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═══╝╚══════╝╚══════╝╚══════╝')
     print()
-    print('Koktél menü')
+    '''
+    MARKDOWN = """
+    # Koktél menü
+
+    1. >> Koktélok nevei
+    2. >> Koktélok árak
+    3. >> Kilépés
+    """
+    console = Console()
+    md = Markdown(MARKDOWN)
+    console.print(md)
+    '''
     print(f'Jelenleg elérhető koktélok száma: {len(koktelok)}')
     print('1 >> Koktélok nevei: ')
     print('2 >> Koktélok árak: ')
@@ -74,22 +102,106 @@ def koktelMenu():
     match v:
         case '1':
             os.system('cls')
-            i = 1
+            console = Console()
+
+            table = Table(title="Koktél menü")
+            table.add_column("Név", style="cyan", justify="center")
+            table.add_column("Elérhető mennyiség", style="yellow", justify="right")
+
             for koktel in koktelok:
-                print(f'{i}. {koktel.nev}')
-                i += 1
+                table.add_row(
+                    koktel.nev,
+                    str(koktel.db),
+                )
+
+            console.print(table)
             input('Enter a key to continue')
             return 'koktelMenu'
         case '2':
             os.system('cls')
-            i = 1
+            console = Console()
+
+            table = Table(title="Koktél menü")
+            table.add_column("Név", style="cyan", justify="center")
+            table.add_column("Elérhető mennyiség", style="yellow", justify="right")
+            table.add_column("Ár", style="green", justify="right")
+
             for koktel in koktelok:
-                print(f'{i}. {koktel.nev} {koktel.ar}')
-                i += 1
+                table.add_row(
+                    koktel.nev,
+                    str(koktel.db),
+                    str(koktel.ar),
+                )
+
+            console.print(table)
+            input('Enter a key to continue')
+            return 'koktelMenu'
         case '3':
             return 'pult'
 
 def alapanyagMenu():
+    os.system('cls')
+    print('███╗   ███╗ ██████╗      ██╗██╗████████╗ ██████╗     ███╗   ███╗ █████╗ ██████╗ ███╗   ██╗███████╗███████╗███████╗')
+    print('████╗ ████║██╔═══██╗     ██║██║╚══██╔══╝██╔═══██╗    ████╗ ████║██╔══██╗██╔══██╗████╗  ██║██╔════╝██╔════╝██╔════╝')
+    print('██╔████╔██║██║   ██║     ██║██║   ██║   ██║   ██║    ██╔████╔██║███████║██║  ██║██╔██╗ ██║█████╗  ███████╗███████╗')
+    print('██║╚██╔╝██║██║   ██║██   ██║██║   ██║   ██║   ██║    ██║╚██╔╝██║██╔══██║██║  ██║██║╚██╗██║██╔══╝  ╚════██║╚════██║')
+    print('██║ ╚═╝ ██║╚██████╔╝╚█████╔╝██║   ██║   ╚██████╔╝    ██║ ╚═╝ ██║██║  ██║██████╔╝██║ ╚████║███████╗███████║███████║')
+    print('╚═╝     ╚═╝ ╚═════╝  ╚════╝ ╚═╝   ╚═╝    ╚═════╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═══╝╚══════╝╚══════╝╚══════╝')
+    print()
+    print('alapanyag menü')
+    print(f'Jelenleg elérhető alapanyagok száma: {len(alapanyagok)}')
+    print('1 >> Alapanyagok nevei: ')
+    print('2 >> Alapanyagokból elérhető mennyiség: ')
+    print('3 >> Hiányzó alapanyagok: ')
+    print('4 >> Kilépés')
+
+    v = input('A választás száma: ')
+    match v:
+        case '1':
+            os.system('cls')
+            console = Console()
+
+            table = Table(title="Alapanyag menü")
+            table.add_column("Név", style="cyan", justify="center")
+
+            for alapanyag in alapanyagok:
+                table.add_row(
+                    alapanyag.nev,
+                )
+
+            console.print(table)
+            input('Enter a key to continue')
+            return 'alapanyagMenu'
+        case '2':
+            os.system('cls')
+            console = Console()
+
+            table = Table(title="Alapanyag menü")
+            table.add_column("Név", style="cyan", justify="center")
+            table.add_column("Mennyiség", style="cyan", justify="center")
+
+            for alapanyag in alapanyagok:
+                table.add_row(
+                    alapanyag.nev,
+                    str(alapanyag.mennyiseg),
+                )
+
+            console.print(table)
+            input('Enter a key to continue')
+            return 'alapanyagMenu'
+        case '3':
+            os.system('cls')
+            i = 1
+            for alapanyag in alapanyagok:
+                i += 1
+                if alapanyag.mennyiseg == 0:
+                    print(f'{i}. {alapanyag.nev} - {alapanyag.mennyiseg} mennyiség')
+            input('Enter a key to continue')
+            return 'alapanyagMenu'
+        case '4':
+            return 'pult'
+        
+def eladasBeszerzesMenu():
     pass
 
 
@@ -101,4 +213,6 @@ while pult != 'kilep':
         case 'koktelMenu':
             pult = koktelMenu()
         case 'alapanyagMenu':
-            pult = alapanyagMenu
+            pult = alapanyagMenu()
+        case 'eladasBeszerzesMenu':
+            pult = eladasBeszerzesMenu()
