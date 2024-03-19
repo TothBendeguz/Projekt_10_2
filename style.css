@@ -44,6 +44,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
+    backdrop-filter: blur(10px);
 }
 .kellőclass{
  margin-right: 0%;
@@ -75,4 +76,13 @@
 }
 #also{
     padding-bottom: 10px
+}
+
+.széles{
+    max-width: 500px;
+    max-height: 7000px;
+}
+.nemtom{
+    padding-left: 36%;
+    padding-right: 0%;
 }
