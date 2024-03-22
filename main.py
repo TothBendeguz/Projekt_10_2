@@ -99,7 +99,7 @@ def koktelMenu():
     print(f'Jelenleg elérhető koktélok száma: {len(koktelok)}')
     print('1 >> Koktélok nevei: ')
     print('2 >> Koktélok árak: ')
-    print('3 >> Kilépés')
+    print('3 >> Vissza')
 
     v = input('A választás száma: ')
     match v:
@@ -108,14 +108,17 @@ def koktelMenu():
             console = Console()
 
             table = Table(title="Koktél menü")
+            table.add_column("Szám", style="red", justify="center")
             table.add_column("Név", style="cyan", justify="center")
             table.add_column("Elérhető mennyiség", style="yellow", justify="right")
-
+            i = 1
             for koktel in koktelok:
                 table.add_row(
+                    str(i),
                     koktel.nev,
                     str(koktel.db),
                 )
+                i += 1
 
             console.print(table)
             input('Enter a key to continue')
@@ -125,16 +128,19 @@ def koktelMenu():
             console = Console()
 
             table = Table(title="Koktél menü")
+            table.add_column("Szám", style="red", justify="center")
             table.add_column("Név", style="cyan", justify="center")
             table.add_column("Elérhető mennyiség", style="yellow", justify="right")
             table.add_column("Ár", style="green", justify="right")
-
+            i = 1
             for koktel in koktelok:
                 table.add_row(
+                    str(i),
                     koktel.nev,
                     str(koktel.db),
                     str(koktel.ar),
                 )
+                i += 1
 
             console.print(table)
             input('Enter a key to continue')
@@ -151,12 +157,12 @@ def alapanyagMenu():
     print('██║ ╚═╝ ██║╚██████╔╝╚█████╔╝██║   ██║   ╚██████╔╝    ██║ ╚═╝ ██║██║  ██║██████╔╝██║ ╚████║███████╗███████║███████║')
     print('╚═╝     ╚═╝ ╚═════╝  ╚════╝ ╚═╝   ╚═╝    ╚═════╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═══╝╚══════╝╚══════╝╚══════╝')
     print()
-    print('alapanyag menü')
+    print('Alapanyag menü')
     print(f'Jelenleg elérhető alapanyagok száma: {len(alapanyagok)}')
     print('1 >> Alapanyagok nevei: ')
     print('2 >> Alapanyagokból elérhető mennyiség: ')
     print('3 >> Hiányzó alapanyagok: ')
-    print('4 >> Kilépés')
+    print('4 >> Vissza')
 
     v = input('A választás száma: ')
     match v:
@@ -181,7 +187,7 @@ def alapanyagMenu():
 
             table = Table(title="Alapanyag menü")
             table.add_column("Név", style="cyan", justify="center")
-            table.add_column("Mennyiség", style="cyan", justify="center")
+            table.add_column("Mennyiség", style="yellow", justify="right")
 
             for alapanyag in alapanyagok:
                 table.add_row(
@@ -207,13 +213,69 @@ def alapanyagMenu():
 def eladasBeszerzesMenu():
     pass
 
+#-----------------------------------------------------------------------------------------------------------------
+
 def koktelKeverese(koktel: int):
-    match koktel:
-        case 1:
-            pass
-        case 2:
-            pass
-        
+    global alapanyagok, koktelok
+
+    # Kiválasztott koktél ellenőrzése
+    if koktel < 1 or koktel > len(koktelok):
+        print("Hibás választás. Kérem, válasszon egy érvényes koktélt.")
+        return
+
+    # Kiválasztott koktél a receptek listájából
+    kivalasztott_koktel = koktelok[koktel - 1]
+
+    # Kiválasztott koktél receptjének ellenőrzése az alapanyagok alapján
+    alapanyagok_szukseges = kivalasztott_koktel.recept.split(", ")
+    van_eleg_alapanyag = True
+    hianyzo_alapanyagok = []
+
+    for alapanyag_szukseges in alapanyagok_szukseges:
+        # Ellenőrzés, hogy van-e elegendő mennyiségű alapanyag
+        van_alapanyag = False
+        for alapanyag in alapanyagok:
+            if alapanyag.nev == alapanyag_szukseges and alapanyag.mennyiseg > 0:
+                van_alapanyag = True
+                break
+        if not van_alapanyag:
+            van_eleg_alapanyag = False
+            hianyzo_alapanyagok.append(alapanyag_szukseges)
+
+    # Ha van elegendő alapanyag
+    if van_eleg_alapanyag:
+        # Alapanyagok mennyiségének csökkentése
+        for alapanyag_szukseges in alapanyagok_szukseges:
+            for alapanyag in alapanyagok:
+                if alapanyag.nev == alapanyag_szukseges:
+                    alapanyag.mennyiseg -= 1
+
+        # Kiválasztott koktél darabszámának növelése
+        kivalasztott_koktel.db += 1
+
+        # A módosítások mentése az alapanyagok.csv és koktelok.csv fájlokba
+        alapanyagok_mentese("alapanyagokuj.csv")
+        koktelok_mentese("koktelokuj.csv")
+
+        print("A koktél sikeresen elkészült!")
+    else:
+        print("Nincs elegendő alapanyag az elkészítéshez.")
+        print("Hiányzó alapanyagok:", ", ".join(hianyzo_alapanyagok))
+
+def alapanyagok_mentese(fajlnev: str):
+    with open(fajlnev, "w", encoding="utf-8") as f:
+        f.write("alapanyag neve;elérhető mennyiség\n")
+        for alapanyag in alapanyagok:
+            f.write(f"{alapanyag.nev};{alapanyag.mennyiseg}\n")
+
+def koktelok_mentese(fajlnev: str):
+    with open(fajlnev, "w", encoding="utf-8") as f:
+        f.write("név;darab raktáron;ár\n")
+        for koktel in koktelok:
+            f.write(f"{koktel.nev};{koktel.db};{koktel.ar}\n")
+
+#-----------------------------------------------------------------------------------------------------------------
+
 def keveresMenu():
     os.system('cls')
     print('███╗   ███╗ ██████╗      ██╗██╗████████╗ ██████╗     ███╗   ███╗ █████╗ ██████╗ ███╗   ██╗███████╗███████╗███████╗')
@@ -263,15 +325,18 @@ def keveresMenu():
                     os.system('cls')
                     console = Console()
 
-                    table = Table(title="Koktélok")
+                    table = Table(title="Koktél menü")
+                    table.add_column("Szám", style="red", justify="center")
                     table.add_column("Név", style="cyan", justify="center")
                     table.add_column("Elérhető mennyiség", style="yellow", justify="right")
-
+                    i = 1
                     for koktel in koktelok:
                         table.add_row(
+                            str(i),
                             koktel.nev,
                             str(koktel.db),
                         )
+                        i += 1
 
                     console.print(table)
                     v2 = input('Melyik koktélt szertnéd keverni?: ')
