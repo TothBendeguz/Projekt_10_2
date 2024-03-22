@@ -79,10 +79,9 @@
 }
 
 .széles{
-    max-width: 500px;
-    max-height: 7000px;
+    max-width: 640px;
+    height: 320px;
 }
 .nemtom{
-    padding-left: 36%;
-    padding-right: 0%;
+    margin-top: 10px
 }
