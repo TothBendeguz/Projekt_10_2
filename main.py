@@ -16,15 +16,6 @@ def slowPrint(string, speed=0.001):
         sys.stdout.flush()
         time.sleep(speed)
 
-
-'''
-slowPrint('Üdvözöllek Rick bárjában, ahol minden korty egy kaland! Itt a koktélok varázslatos világába kalandozhatunk, és minden korty új élményeket hoz. Csípős szózat a bárpultnál, hűsítő ízek a poharadban, itt minden hangulat megtalálható. Készen állsz, hogy együtt élvezzük az ízek örömét és a jó társaságot?')
-
-
-input("\n\nHa készen álasz nyomd meg az entert!")
-os.system('cls')
-'''
-
 def beolvasas():
     f = open('koktelok.csv', 'r', encoding='utf-8')
     f.readline()
@@ -215,64 +206,56 @@ def eladasBeszerzesMenu():
 
 #-----------------------------------------------------------------------------------------------------------------
 
+def beolvas_receptek():
+    receptek = {}
+    with open('receptek.txt', 'r', encoding='utf-8') as f:
+        for line in f:
+            ingredients, cocktail_name = line.strip().split(' - ')
+            ingredients = [ingredient.strip() for ingredient in ingredients.split(',')]
+            receptek[cocktail_name] = ingredients
+    return receptek
+
+receptek = beolvas_receptek()
+
 def koktelKeverese(koktel: int):
-    global alapanyagok, koktelok
+    global alapanyagok
+    global koktelok
 
-    # Kiválasztott koktél ellenőrzése
-    if koktel < 1 or koktel > len(koktelok):
-        print("Hibás választás. Kérem, válasszon egy érvényes koktélt.")
-        return
+    # Koktél kiválasztása az index alapján
+    koktel = koktelok[koktel - 1]  
 
-    # Kiválasztott koktél a receptek listájából
-    kivalasztott_koktel = koktelok[koktel - 1]
-
-    # Kiválasztott koktél receptjének ellenőrzése az alapanyagok alapján
-    alapanyagok_szukseges = kivalasztott_koktel.recept.split(", ")
-    van_eleg_alapanyag = True
-    hianyzo_alapanyagok = []
-
-    for alapanyag_szukseges in alapanyagok_szukseges:
-        # Ellenőrzés, hogy van-e elegendő mennyiségű alapanyag
-        van_alapanyag = False
-        for alapanyag in alapanyagok:
-            if alapanyag.nev == alapanyag_szukseges and alapanyag.mennyiseg > 0:
-                van_alapanyag = True
+    ingredients_needed = receptek[koktel.nev]  # A koktélhoz szükséges alapanyagok
+    for ingredient in ingredients_needed:
+        found = False
+        for i, alapanyag in enumerate(alapanyagok):
+            if alapanyag.nev.lower() == ingredient.lower():
+                found = True
+                # Módosítás az alapanyag mennyiségénél
+                alapanyag.mennyiseg -= 1  # Alapanyag mennyiségének csökkentése
                 break
-        if not van_alapanyag:
-            van_eleg_alapanyag = False
-            hianyzo_alapanyagok.append(alapanyag_szukseges)
+        if not found:
+            print(f"A(z) {koktel.nev} koktélhoz hiányzik {ingredient}!")
 
-    # Ha van elegendő alapanyag
-    if van_eleg_alapanyag:
-        # Alapanyagok mennyiségének csökkentése
-        for alapanyag_szukseges in alapanyagok_szukseges:
-            for alapanyag in alapanyagok:
-                if alapanyag.nev == alapanyag_szukseges:
-                    alapanyag.mennyiseg -= 1
-
-        # Kiválasztott koktél darabszámának növelése
-        kivalasztott_koktel.db += 1
-
-        # A módosítások mentése az alapanyagok.csv és koktelok.csv fájlokba
-        alapanyagok_mentese("alapanyagokuj.csv")
-        koktelok_mentese("koktelokuj.csv")
-
-        print("A koktél sikeresen elkészült!")
-    else:
-        print("Nincs elegendő alapanyag az elkészítéshez.")
-        print("Hiányzó alapanyagok:", ", ".join(hianyzo_alapanyagok))
-
-def alapanyagok_mentese(fajlnev: str):
-    with open(fajlnev, "w", encoding="utf-8") as f:
+    # Alapanyagok.csv frissítése
+    with open('alapanyagokuj.csv', 'w', encoding='utf-8') as f:
         f.write("alapanyag neve;elérhető mennyiség\n")
         for alapanyag in alapanyagok:
             f.write(f"{alapanyag.nev};{alapanyag.mennyiseg}\n")
 
-def koktelok_mentese(fajlnev: str):
-    with open(fajlnev, "w", encoding="utf-8") as f:
+    # Koktelok.csv frissítése
+    with open('koktelokuj.csv', 'w', encoding='utf-8') as f:
         f.write("név;darab raktáron;ár\n")
-        for koktel in koktelok:
-            f.write(f"{koktel.nev};{koktel.db};{koktel.ar}\n")
+        for k in koktelok:
+            if k.nev == koktel.nev:
+                k.db += 1  # A kevert koktél darabszámának növelése
+            f.write(f"{k.nev};{k.db};{k.ar}\n")
+
+    for szam in track(range(10)):
+        sleep(0.5)
+
+    input('Nyomj Enter-t a folytatáshoz...')
+    return 'keveresMenu'
+
 
 #-----------------------------------------------------------------------------------------------------------------
 
@@ -340,9 +323,9 @@ def keveresMenu():
 
                     console.print(table)
                     v2 = input('Melyik koktélt szertnéd keverni?: ')
-                    koktelKeverese(int(v2))
+                    return koktelKeverese(int(v2))
                 case _:
-                    koktelKeverese(int(v))
+                    return koktelKeverese(int(v))
 
 
 pult = main()
