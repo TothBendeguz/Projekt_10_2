@@ -75,18 +75,7 @@ def koktelMenu():
     print('██║ ╚═╝ ██║╚██████╔╝╚█████╔╝██║   ██║   ╚██████╔╝    ██║ ╚═╝ ██║██║  ██║██████╔╝██║ ╚████║███████╗███████║███████║')
     print('╚═╝     ╚═╝ ╚═════╝  ╚════╝ ╚═╝   ╚═╝    ╚═════╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═══╝╚══════╝╚══════╝╚══════╝')
     print()
-    '''
-    MARKDOWN = """
-    # Koktél menü
 
-    1. >> Koktélok nevei
-    2. >> Koktélok árak
-    3. >> Kilépés
-    """
-    console = Console()
-    md = Markdown(MARKDOWN)
-    console.print(md)
-    '''
     print(f'Jelenleg elérhető koktélok száma: {len(koktelok)}')
     print('1 >> Koktélok nevei: ')
     print('2 >> Koktélok árak: ')
