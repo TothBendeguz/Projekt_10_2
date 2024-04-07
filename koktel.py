@@ -10,3 +10,4 @@ class Alapanyag:
         adatok = sor.strip().split(';')
         self.nev = adatok[0]
         self.mennyiseg = int(adatok[1])
+        self.ar = int(adatok[2])
