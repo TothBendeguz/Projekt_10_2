@@ -1,12 +1,12 @@
-alapanyag neve;elérhető mennyiség;ár
-Vodka;0;210
-Gin;3;165
-Vermouth;0;205
-White Rum;8;125
-Lime Juice;4;225
-Soda Water;2;235
-Mint;7;130
-Sugar;0;245
+név;darab raktáron;ár
+Vodka;4;210
+Gin;7;165
+Vermouth;2;205
+White Rum;9;125
+Lime Juice;5;225
+Soda Water;3;235
+Mint;8;130
+Sugar;1;245
 Tequila;6;180
 Triple Sec;0;250
 Bourbon;10;110
