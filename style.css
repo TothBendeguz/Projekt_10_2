@@ -121,3 +121,25 @@
 .milyennevetadjakneki{
     margin-bottom: 50px;
 }
+.meretmax{
+    max-width: 20px;
+    max-height: 20px;
+}
+.toast{
+    background-color: black;
+    color: rgb(200, 200, 200);
+}
+.toast-header{
+    background-color: black;
+    color: rgb(200, 200, 200);
+}
+.btn-close{
+    background-color: white;
+}
+.gomb{
+    background-color: white;
+    color: rgb(100,100,100);
+}
+.alulsó{
+    padding-bottom: 30px;
+}
